@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Минимизатор булевых функций", "Минимизатор булевых функций\Минимизатор булевых функций.csproj", "{6A3E8DF1-3699-4BC8-A036-84C051BAA56D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscreteMathematics", "DiscreteMathematics\DiscreteMathematics.csproj", "{79464114-7D36-40D7-B163-59249927D9FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{6A3E8DF1-3699-4BC8-A036-84C051BAA56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A3E8DF1-3699-4BC8-A036-84C051BAA56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A3E8DF1-3699-4BC8-A036-84C051BAA56D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79464114-7D36-40D7-B163-59249927D9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79464114-7D36-40D7-B163-59249927D9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79464114-7D36-40D7-B163-59249927D9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79464114-7D36-40D7-B163-59249927D9FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

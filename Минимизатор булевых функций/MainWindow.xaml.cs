@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using DiscreteMathematics;
 
@@ -65,16 +66,17 @@ namespace Минимизатор_булевых_функций
             else
             {
                 ButtonEsc.IsEnabled = ButtonClear.IsEnabled = true;
-                var symbol = TextBoxResult.Text[TextBoxResult.Text.Length - 1];
-                if (symbol == '(')
+                var lastSymbol = TextBoxResult.Text[length - 1];
+                if (lastSymbol == '(')
                     _countOfBrackets++;
-                if (symbol == ')')
+                if (lastSymbol == ')')
                     _countOfBrackets--;
-                if (symbol == '*' || symbol == '+' || symbol == '¬' || symbol == '(')
+                if (AvailableSymbols.OpeningSymbols.Contains(symbol))
                     ChangeEnabled(true, false, true, true, false);
                 else
+                {
                     ChangeEnabled(false, true, false, false, true);
-                ButtonCount.IsEnabled = _countOfBrackets == 0 && symbol != '*' && symbol != '+' && symbol != '¬';
+                }
             }
             TextBoxOldResult.Text = "";
         }

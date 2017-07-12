@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace DiscreteMathematics
+namespace DiscreteMathematics.Operations
 {
-    class Calculator
+    public class FunctionsMinimizer
     {
         private List<string> tokens;
 

@@ -53,34 +53,43 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Name="ButtonClear" Grid.Row="0" Grid.Column="0" FontSize="24" Grid.ColumnSpan="2" Width="250" Click="ClickClear" IsEnabled="False"  ToolTip="Очистить ввод" Content="Очистить"/>
-            <Button Name="ButtonEsc" Grid.Row="0" Grid.Column="2" FontSize="24" Grid.ColumnSpan="2" Width="250" Click="ClickEsc" IsEnabled="False" ToolTip="Отменить последнее действие" Content="Отменить"/>
-            <Button Name="ButtonNot" Grid.Row="1" Grid.Column="0" FontSize="36" Click="AddToTextBox" ToolTip="Инверсия - НЕ" Content="¬"/>
-            <Button Name="ButtonOperation0" Grid.Row="1" Grid.Column="1" FontSize="36" Click="AddToTextBox" IsEnabled="False" ToolTip="Конъюнкция - И" Content="*"/>
-            <Button Name="ButtonOperation1" Grid.Row="1" Grid.Column="2" FontSize="36" Click="AddToTextBox" IsEnabled="False" ToolTip="Дизъюнкция - ИЛИ ТО, ИЛИ ТО, ИЛИ ОБА" Content="+"/>
-            <Button Name="ButtonCount" Grid.Row="1" Grid.Column="3" FontSize="36" IsEnabled="False" Click="ClickCount" ToolTip="Посчитать результат" Content="="/>
-            <Button Name="ButtonOperand0" Grid.Row="2" Grid.Column="0" FontSize="36" Click="AddToTextBox" ToolTip="ЛОЖЬ" Content="0"/>
-            <Button Name="ButtonOperand1" Grid.Row="2" Grid.Column="1" FontSize="36" Click="AddToTextBox" ToolTip="ИСТИНА" Content="1"/>
-            <Button Name="ButtonBracketOpen" Grid.Row="2" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="("/>
-            <Button Name="ButtonBracketClose" Grid.Row="2" Grid.Column="3" FontSize="36" IsEnabled="False" Click="AddToTextBox" Content=")"/>
-            <Button Name="ButtonOperand2" Grid.Row="3" Grid.Column="0" FontSize="36" Click="AddToTextBox" Content="a"/>
-            <Button Name="ButtonOperand3" Grid.Row="3" Grid.Column="1" FontSize="36" Click="AddToTextBox" Content="b"/>
-            <Button Name="ButtonOperand4" Grid.Row="3" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="c"/>
-            <Button Name="ButtonOperand5" Grid.Row="3" Grid.Column="3" FontSize="36" Click="AddToTextBox" Content="d"/>
-            <Button Name="ButtonOperand6" Grid.Row="4" Grid.Column="0" FontSize="36" Click="AddToTextBox" Content="e"/>
-            <Button Name="ButtonOperand7" Grid.Row="4" Grid.Column="1" FontSize="36" Click="AddToTextBox" Content="x"/>
-            <Button Name="ButtonOperand8" Grid.Row="4" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="y"/>
-            <Button Name="ButtonOperand9" Grid.Row="4" Grid.Column="3" FontSize="36" Click="AddToTextBox" Content="z"/>
+            <Button Name="ButtonClear" Grid.Row="0" Grid.Column="0" FontSize="24" Width="250" Click="ClickClear" IsEnabled="False"  ToolTip="Очистить ввод" Content="Очистить"/>
+            <Button Name="ButtonEsc" Grid.Row="0" Grid.Column="1" FontSize="24" Width="250" Click="ClickEsc" IsEnabled="False" ToolTip="Отменить последнее действие" Content="Отменить"/>
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="GridSymbols">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" FontSize="36" Click="AddToTextBox" ToolTip="Инверсия - НЕ" Content="¬"/>
+                <Button Grid.Row="0" Grid.Column="1" FontSize="36" Click="AddToTextBox" IsEnabled="False" ToolTip="Конъюнкция - И" Content="*"/>
+                <Button Grid.Row="0" Grid.Column="2" FontSize="36" Click="AddToTextBox" IsEnabled="False" ToolTip="Дизъюнкция - ИЛИ ТО, ИЛИ ТО, ИЛИ ОБА" Content="+"/>
+                <Button Grid.Row="0" Grid.Column="3" FontSize="36" Click="ClickCount" IsEnabled="False" ToolTip="Посчитать результат" Content="="/>
+                <Button Grid.Row="1" Grid.Column="0" FontSize="36" Click="AddToTextBox" ToolTip="ЛОЖЬ" Content="0"/>
+                <Button Grid.Row="1" Grid.Column="1" FontSize="36" Click="AddToTextBox" ToolTip="ИСТИНА" Content="1"/>
+                <Button Grid.Row="1" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="("/>
+                <Button Grid.Row="1" Grid.Column="3" FontSize="36" Click="AddToTextBox" IsEnabled="False" Content=")"/>
+                <Button Grid.Row="2" Grid.Column="0" FontSize="36" Click="AddToTextBox" Content="a"/>
+                <Button Grid.Row="2" Grid.Column="1" FontSize="36" Click="AddToTextBox" Content="b"/>
+                <Button Grid.Row="2" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="c"/>
+                <Button Grid.Row="2" Grid.Column="3" FontSize="36" Click="AddToTextBox" Content="d"/>
+                <Button Grid.Row="3" Grid.Column="0" FontSize="36" Click="AddToTextBox" Content="e"/>
+                <Button Grid.Row="3" Grid.Column="1" FontSize="36" Click="AddToTextBox" Content="x"/>
+                <Button Grid.Row="3" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="y"/>
+                <Button Grid.Row="3" Grid.Column="3" FontSize="36" Click="AddToTextBox" Content="z"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

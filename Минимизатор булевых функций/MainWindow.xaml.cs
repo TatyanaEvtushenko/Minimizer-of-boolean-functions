@@ -1,14 +1,15 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using DiscreteMathematics;
+using DiscreteMathematics.CorrectExpression.ExpressionCheckers;
+using DiscreteMathematics.CorrectExpression.ExpressionCheckers.Implementations;
+using DiscreteMathematics.Operations;
 
 namespace Минимизатор_булевых_функций
 {
     public partial class MainWindow
     {
-        private int _countOfBrackets;
-        private readonly Calculator _calculator = new Calculator();
+        private readonly FunctionsMinimizer _calculator = new FunctionsMinimizer();
+        private readonly IExpressionCheker _expressionCheker = new ExpressionCheker();
 
         public MainWindow()
         {
@@ -17,24 +18,22 @@ namespace Минимизатор_булевых_функций
 
         private void AddToTextBox(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            TextBoxResult.Text += button.Content;
+            var content = (sender as Button)?.Content.ToString();
+            _expressionCheker.Push(content);
+            TextBoxResult.Text += content;
         }
 
         private void ClickClear(object sender, RoutedEventArgs e)
         {
             TextBoxResult.Text = "";
-            _countOfBrackets = 0;
+            _expressionCheker.Clear();
         }
 
         private void ClickEsc(object sender, RoutedEventArgs e)
         {
             var lastIndex = TextBoxResult.Text.Length - 1;
-            var symbol = TextBoxResult.Text[lastIndex];
-            if (symbol == AvailableSymbols.OpenBracket)
-                _countOfBrackets--;
-            if (symbol == AvailableSymbols.CloseBracket)
-                _countOfBrackets++;
+            var lastSymbol = TextBoxResult.Text[lastIndex].ToString();
+            _expressionCheker.Pop(lastSymbol);
             TextBoxResult.Text = TextBoxResult.Text.Substring(0, lastIndex);
         }
 
@@ -42,41 +41,35 @@ namespace Минимизатор_булевых_функций
         {
             var str = TextBoxResult.Text;
             TextBoxResult.Text = _calculator.Minimization(str);
-            TextBoxOldResult.Text = str + $"\n {AvailableSymbols.Equally} ";
+            TextBoxOldResult.Text = str + "\n =";
+            _expressionCheker.Clear();
         }
 
-        private void ChangeEnabled(bool operandEnabled, bool operationEnabled, bool notEnabled, bool bracketOpenEnabled, bool bracketCloseEnabled)
+        private void ChangeEnabled(string lastSymbol)
         {
-            ButtonOperand0.IsEnabled = ButtonOperand1.IsEnabled = ButtonOperand2.IsEnabled = ButtonOperand3.IsEnabled = ButtonOperand4.IsEnabled
-                = ButtonOperand5.IsEnabled = ButtonOperand6.IsEnabled = ButtonOperand7.IsEnabled = ButtonOperand8.IsEnabled = ButtonOperand9.IsEnabled = operandEnabled;
-            ButtonOperation0.IsEnabled = ButtonOperation1.IsEnabled = operationEnabled;
-            ButtonNot.IsEnabled = notEnabled;
-            ButtonBracketOpen.IsEnabled = bracketOpenEnabled;
-            ButtonBracketClose.IsEnabled = bracketCloseEnabled && _countOfBrackets > 0;
+            var availableSymbols = _expressionCheker.GetAvailableSymbols(lastSymbol);
+            foreach (var child in GridSymbols.Children)
+            {
+                var button = child as Button;
+                if (button == null) continue;
+                var content = button.Content.ToString();
+                button.IsEnabled = availableSymbols?.Contains(content) ?? false;
+            }
         }
 
         private void TextBoxResultChanged(object sender, TextChangedEventArgs e)
         {
             var length = TextBoxResult.Text.Length;
-            if (length == 0)
+            if (length > 0)
             {
-                ButtonEsc.IsEnabled = ButtonClear.IsEnabled = ButtonCount.IsEnabled = false;
-                ChangeEnabled(true, false, true, true, false);
+                var lastSymbol = TextBoxResult.Text[length - 1].ToString();
+                ChangeEnabled(lastSymbol);
+                ButtonEsc.IsEnabled = ButtonClear.IsEnabled = true;
             }
             else
             {
-                ButtonEsc.IsEnabled = ButtonClear.IsEnabled = true;
-                var lastSymbol = TextBoxResult.Text[length - 1];
-                if (lastSymbol == '(')
-                    _countOfBrackets++;
-                if (lastSymbol == ')')
-                    _countOfBrackets--;
-                if (AvailableSymbols.OpeningSymbols.Contains(symbol))
-                    ChangeEnabled(true, false, true, true, false);
-                else
-                {
-                    ChangeEnabled(false, true, false, false, true);
-                }
+                ChangeEnabled(string.Empty);
+                ButtonEsc.IsEnabled = ButtonClear.IsEnabled = false;
             }
             TextBoxOldResult.Text = "";
         }

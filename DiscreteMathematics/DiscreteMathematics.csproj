@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CorrectExpression\AvailabilityOfSymbolsCategory.cs" />
-    <Compile Include="CorrectExpression\AvailableSymbols.cs" />
-    <Compile Include="Operations\MinimizerOfFunctions.cs" />
+    <Compile Include="CorrectExpression\ExpressionCheckers\Implementations\ExpressionCheker.cs" />
+    <Compile Include="CorrectExpression\ExpressionSymbols.cs" />
+    <Compile Include="CorrectExpression\ExpressionCheckers\IExpressionCheker.cs" />
+    <Compile Include="Operations\FunctionsMinimizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

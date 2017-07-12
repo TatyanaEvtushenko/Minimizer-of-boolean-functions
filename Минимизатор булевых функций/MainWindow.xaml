@@ -1,0 +1,87 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Минимизатор_булевых_функций.MainWindow"
+         Title="Минимизатор булевых функций (Евтушенко Т.С., 551004)" Width="505" Height="630">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Width" Value="125"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="RoyalBlue"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 0"></ContentControl>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="LightSteelBlue"/>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="MediumBlue"/>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="DarkBlue"/>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="TextBoxOldResult" Grid.Row="0"/>
+        <TextBox x:Name="TextBoxResult" Grid.Row="1" TextChanged="TextBoxResultChanged"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="ButtonClear" Grid.Row="0" Grid.Column="0" FontSize="24" Grid.ColumnSpan="2" Width="250" Click="ClickClear" IsEnabled="False"  ToolTip="Очистить ввод" Content="Очистить"/>
+            <Button Name="ButtonEsc" Grid.Row="0" Grid.Column="2" FontSize="24" Grid.ColumnSpan="2" Width="250" Click="ClickEsc" IsEnabled="False" ToolTip="Отменить последнее действие" Content="Отменить"/>
+            <Button Name="ButtonNot" Grid.Row="1" Grid.Column="0" FontSize="36" Click="AddToTextBox" ToolTip="Инверсия - НЕ" Content="¬"/>
+            <Button Name="ButtonOperation0" Grid.Row="1" Grid.Column="1" FontSize="36" Click="AddToTextBox" IsEnabled="False" ToolTip="Конъюнкция - И" Content="*"/>
+            <Button Name="ButtonOperation1" Grid.Row="1" Grid.Column="2" FontSize="36" Click="AddToTextBox" IsEnabled="False" ToolTip="Дизъюнкция - ИЛИ ТО, ИЛИ ТО, ИЛИ ОБА" Content="+"/>
+            <Button Name="ButtonCount" Grid.Row="1" Grid.Column="3" FontSize="36" IsEnabled="False" Click="ClickCount" ToolTip="Посчитать результат" Content="="/>
+            <Button Name="ButtonOperand0" Grid.Row="2" Grid.Column="0" FontSize="36" Click="AddToTextBox" ToolTip="ЛОЖЬ" Content="0"/>
+            <Button Name="ButtonOperand1" Grid.Row="2" Grid.Column="1" FontSize="36" Click="AddToTextBox" ToolTip="ИСТИНА" Content="1"/>
+            <Button Name="ButtonBracketOpen" Grid.Row="2" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="("/>
+            <Button Name="ButtonBracketClose" Grid.Row="2" Grid.Column="3" FontSize="36" IsEnabled="False" Click="AddToTextBox" Content=")"/>
+            <Button Name="ButtonOperand2" Grid.Row="3" Grid.Column="0" FontSize="36" Click="AddToTextBox" Content="a"/>
+            <Button Name="ButtonOperand3" Grid.Row="3" Grid.Column="1" FontSize="36" Click="AddToTextBox" Content="b"/>
+            <Button Name="ButtonOperand4" Grid.Row="3" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="c"/>
+            <Button Name="ButtonOperand5" Grid.Row="3" Grid.Column="3" FontSize="36" Click="AddToTextBox" Content="d"/>
+            <Button Name="ButtonOperand6" Grid.Row="4" Grid.Column="0" FontSize="36" Click="AddToTextBox" Content="e"/>
+            <Button Name="ButtonOperand7" Grid.Row="4" Grid.Column="1" FontSize="36" Click="AddToTextBox" Content="x"/>
+            <Button Name="ButtonOperand8" Grid.Row="4" Grid.Column="2" FontSize="36" Click="AddToTextBox" Content="y"/>
+            <Button Name="ButtonOperand9" Grid.Row="4" Grid.Column="3" FontSize="36" Click="AddToTextBox" Content="z"/>
+        </Grid>
+    </Grid>
+</Window>
+
